@@ -15,7 +15,9 @@ weatherForm.addEventListener('submit', (e) => {
 
     if (location === '' || location === undefined) {
         console.log('Enter a location!')
-        errorMsg.textContent = 'Enter a location!'
+        errorMsg.innerHTML = 'No location was provided! Enter a location'
+        messageTwo.innerHTML = ''
+        messageOne.innerHTML = ''
     } else {
         // console.log(location)
         fetch(`/weather?address=${location}`)
@@ -24,12 +26,16 @@ weatherForm.addEventListener('submit', (e) => {
                 if (data.error) {
                     console.log(data.error)
                     errorMsg.textContent = data.error
+                    messageTwo.innerHTML = ''
+                    messageOne.innerHTML = ''
                 } else {
-                    const address = data.Location
-                    const forecast = `It's currently ${data.Description} in ${location}. Current Temperature is ${data.Current_Temperature}. Rain Probability is ${data.Cloud_Cover}`
-
-                    messageOne.textContent = `${address}`
-                    messageTwo.textContent = `${forecast}`
+                    errorMsg.innerHTML = ''
+                    messageOne.innerHTML = `${data.Location}`
+                    messageTwo.innerHTML = `It's currently ${data.Description} out there <br>
+                                            Current Temperature is ${data.Current_Temperature}<br>
+                                            It feels like ${data.Feels_Like_Temperature} <br>
+                                            Cloud cover is ${data.Cloud_Cover} <br>
+                                            Humidity level is ${data.Humidity}`
                     // console.log(address)
                     // console.log(forecast)
                 }
