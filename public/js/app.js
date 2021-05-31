@@ -30,8 +30,8 @@ weatherForm.addEventListener('submit', (e) => {
 
                     messageOne.textContent = `${address}`
                     messageTwo.textContent = `${forecast}`
-                    console.log(address)
-                    console.log(forecast)
+                    // console.log(address)
+                    // console.log(forecast)
                 }
             })
     }
